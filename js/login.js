@@ -18,69 +18,65 @@ document.addEventListener("DOMContentLoaded", function() {
     var divLogin = document.getElementById("divLogin")
     var divCard = document.getElementById("divCard")
     const container = document.querySelector(".divVCard");
-
-    
-    function checkAuthentication() {
-        
-            authDB.onblocked = function () {
-                console.log("database bloqueada")
-            }
-        
-            authDB.onupgradeneeded = function (e) {
-                const db = authDB.result;
-        
-                let object = db.createObjectStore("card", { KeyPath: "userId" });
-                object.createIndex("userId", "userId", { unique: true });
-                object.createIndex("cardBase64", "cardBase64", { unique: true });
-        
-            }
-        
-            authDB.onsuccess = function (e) {
-                console.log("database onsuccess")
-        
-                const db = authDB.result;
-        
-                const transaction = db.transaction('card', 'readonly');
-                const authStore = transaction.objectStore('card');
-        
-                const authenticationData = authStore.get('userId');
-        
-                authenticationData.onsuccess = function (event) {
-        
-                    const result = event.target.result;
-        
-                    if (result) {
-                        divLogin.style.display = 'none'
-                        divCard.style.display = 'block'            
-                        peticion(result)
-
-                    }
-                };
-        
-                authenticationData.onerror = function (event) {
-                    console.error('Error al consultar USER ID:', event.target.error);
-                };
-            }
-        
-            authDB.onerror = function (e) {
-                console.log("database indexdb error")
-            }
-        
-    }
-
+    const userInput = document.getElementById('user');
+    const passwordInput = document.getElementById('password');
+    const loginButton = document.getElementById('btnLogin');
     var showVCard = () => {
         var output = "<img class='vcardImage' src='' alt='NO PUDIMOS ENCONTRAR TU IMAGEN' id='vcardpwa' />";
         container.innerHTML = output;
     };
-
+    
     checkAuthentication()
     showVCard()
     banner()
 
-    const userInput = document.getElementById('user');
-    const passwordInput = document.getElementById('password');
-    const loginButton = document.getElementById('btnLogin');
-    // Iniciar Sesión
+    //VALIDAMOS E INICIAMOS NUESTRO INDEXDB
+    function checkAuthentication() {
+        
+        authDB.onblocked = function () {
+            console.log("database bloqueada")
+        }
+    
+        authDB.onupgradeneeded = function (e) {
+            const db = authDB.result;
+    
+            let object = db.createObjectStore("card", { KeyPath: "userId" });
+            object.createIndex("userId", "userId", { unique: true });
+            object.createIndex("cardBase64", "cardBase64", { unique: true });
+    
+        }
+    
+        authDB.onsuccess = function (e) {
+            console.log("database onsuccess")
+    
+            const db = authDB.result;
+    
+            const transaction = db.transaction('card', 'readonly');
+            const authStore = transaction.objectStore('card');
+    
+            const authenticationData = authStore.get('userId');
+    
+            authenticationData.onsuccess = function (event) {
+                const result = event.target.result;
+                if (result) {
+                    divLogin.style.display = 'none'
+                    divCard.style.display = 'block'            
+                    peticion(result)
+                }
+            };
+    
+            authenticationData.onerror = function (event) {
+                console.error('Error al consultar USER ID:', event.target.error);
+            };
+        }
+    
+        authDB.onerror = function (e) {
+            console.log("database indexdb error")
+        }
+    
+    }
+
+    // INICIAMOS SESIÓN
     loginButton.addEventListener('click', () => {
 
         const user = userInput.value;
@@ -98,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
             )
         } else {
             if (cleanUser == "25801" && cleanPassword == "12345") {
-                insertAuth(cleanUser)
+                insertUser(cleanUser)
             } else {
                 Swal.fire(
                     'Lo siento',
@@ -143,34 +139,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     });
-
-    function insertAuth(data) {
-
-        //LIMPIAMOS EL PARAMETRO PARA EVITAR ATAQUES XSS
-        const cleanData = DOMPurify.sanitize(data);
-        const db = authDB.result;
-
-        db.onversionchange = function () {
-            db.close();
-            Swal.fire(
-                'Cuidado',
-                'La base de datos está desactualizada, por favor recargue la página.',
-                'warning'
-            )
-        };
-
-        let store = db.transaction("card", "readwrite").objectStore("card");
-        let request = store.put(cleanData, "userId");
-
-        request.onsuccess = (event) => {
-            console.log("USER ID insertado de manera correcta"),
-            divLogin.style.display = 'none'
-            divCard.style.display = 'block'
-            peticion(cleanData)
-        };
-        request.onerror = (err) => { console.log("Error al insertar el USER ID" + err) };
-
-    }
 
     //CREACIÓN DE BANNER DE INSTALACIÓN
     function banner() {
@@ -265,7 +233,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     }
-    // Detectar el sistema operativo
+
+    // DETECTAR SISTEMA OPERATIVO
     function detectarSistemaOperativo() {
         const userAgent = navigator.userAgent;
 
@@ -284,6 +253,34 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    //INSERTAMOS EL USUARIO
+    function insertUser(data) {
+
+        //LIMPIAMOS EL PARAMETRO PARA EVITAR ATAQUES XSS
+        const cleanData = DOMPurify.sanitize(data);
+        const db = authDB.result;
+
+        db.onversionchange = function () {
+            db.close();
+            Swal.fire(
+                'Cuidado',
+                'La base de datos está desactualizada, por favor recargue la página.',
+                'warning'
+            )
+        };
+
+        let store = db.transaction("card", "readwrite").objectStore("card");
+        let request = store.put(cleanData, "userId");
+
+        request.onsuccess = (event) => {
+            console.log("USER ID insertado de manera correcta"),
+            divLogin.style.display = 'none'
+            divCard.style.display = 'block'
+            peticion(cleanData)
+        };
+        request.onerror = (err) => { console.log("Error al insertar el USER ID" + err) };
+
+    }
 
     //CONSULTA PARA TRAER INFORMACIÓN
     function peticion(param) {
