@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
             authenticationData.onsuccess = function (event) {
                 const result = event.target.result;
                 if (result) {
-                    divLogin.remove();
+                    divLogin.style.display = 'none'
                     divCard.style.display = 'block'            
                     peticion(result)
                 }
@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         request.onsuccess = (event) => {
             console.log("USER ID insertado de manera correcta"),
-            divLogin.remove();
+            divLogin.style.display = 'none'
             divCard.style.display = 'block'
             peticion(cleanData)
         };
