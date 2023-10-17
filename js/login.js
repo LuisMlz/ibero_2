@@ -9,19 +9,37 @@
     --Notes:        En IOS se han tenido problemas de compatibilidad en Android al 
                     parecer todo bien.
 */
+function detectarSistemaOperativo() {
+    const userAgent = navigator.userAgent;
+
+    if (/Android/i.test(userAgent)) {
+        return "Android";
+    } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+        return "iOS";
+    } else if (/Windows NT/i.test(userAgent)) {
+        return "Windows";
+    } else if (/Mac OS/i.test(userAgent)) {
+        return "macOS";
+    } else if (/Linux/i.test(userAgent)) {
+        return "Linux";
+    } else {
+        return "Desconocido";
+    }
+}
+
+window.addEventListener('load', () => {
+    if(detectarSistemaOperativo() != "Windows"){
+        const splashScreen = document.getElementById('splash-screen');
+        splashScreen.style.animation = 'splashAnimation 2s'; // Aplica la animación
+        setTimeout(() => {
+        // Oculta el splash screen después de 2 segundos
+        splashScreen.style.display = 'none';
+        }, 2000); 
+    }
+  });
+
 
 document.addEventListener("DOMContentLoaded", function() {
-
-    window.addEventListener('load', () => {
-        if(detectarSistemaOperativo() != "Windows"){
-            const splashScreen = document.getElementById('splash-screen');
-            splashScreen.style.animation = 'splashAnimation 2s'; // Aplica la animación
-            setTimeout(() => {
-            // Oculta el splash screen después de 2 segundos
-            splashScreen.style.display = 'none';
-            }, 2000); 
-        }
-      });
 
     //VARIABLES GLOBALES
     const authDB = indexedDB.open('vcard', 1);
