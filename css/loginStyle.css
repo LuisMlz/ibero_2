@@ -52,17 +52,17 @@ body {
     margin: 40px 40px 40px;
   }
   .eula {
-    color: #ec3b43;
+    color: #c8041a;
     font-size: 16px;
     line-height: 1.5;
     margin: 40px;
   }
   .pwa{
-    color: #ec3b43;
+    color: #c8041a;
     text-decoration: none;
   }
   .right {
-    background: #ec3b43;
+    background: #c8041a;
     box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
     color: #F1F1F2;
     position: relative;
@@ -130,7 +130,7 @@ body {
     }
   
     #install-button, #dismiss-button {
-      background-color: #ec3b43;
+      background-color: #c8041a;
       border: none;
       color: white;
       padding: 10px 20px;
@@ -143,9 +143,9 @@ body {
     }
 
     .swal2-confirm {
-      background-color: #ec3b43 !important; /* Cambiar el fondo del botón a verde */
+      background-color: #c8041a !important; /* Cambiar el fondo del botón a verde */
       color: white;
-      border-color: #ec3b43 !important; /* Cambiar el color del texto del botón a blanco */
+      border-color: #c8041a !important; /* Cambiar el color del texto del botón a blanco */
   }
 
   .divVCard {
