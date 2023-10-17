@@ -165,4 +165,6 @@ body {
     margin: auto;
     color: #c8041a;
     font-weight: bold;
+    object-fit: cover; /* Ajusta la imagen para cubrir todo el espacio */
+
 }
