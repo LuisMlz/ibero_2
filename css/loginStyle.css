@@ -167,6 +167,26 @@ body {
     margin: auto;
     color: #c8041a;
     font-weight: bold;
-    object-fit: cover; /* Ajusta la imagen para cubrir todo el espacio */
 
+}
+
+:root {
+  --color-fondo-oscuro: #333;
+  --color-texto-oscuro: #fff;
+  --color-fondo-claro: #fff;
+  --color-texto-claro: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-oscuro);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--color-fondo-claro);
+    color: var(--color-texto-claro);
+  }
 }
