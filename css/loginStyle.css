@@ -3,7 +3,7 @@ body {
     font-family: 'Inter UI', sans-serif;
   }
   .page {
-    display: flex;
+    display: none;
     flex-direction: column;
     height: calc(100% - 40px);
     position: absolute;
@@ -149,7 +149,7 @@ body {
   }
 
   .divVCard {
-    display: flex; 
+    display: none;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -163,8 +163,4 @@ body {
     margin: auto;
     color: #d53758;
     font-weight: bold;
-}
-
-#divCard, #divLogin{
-  display: none;
 }

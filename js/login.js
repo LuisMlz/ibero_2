@@ -63,10 +63,11 @@ document.addEventListener("DOMContentLoaded", function() {
             authenticationData.onsuccess = function (event) {
                 const result = event.target.result;
                 if (result) {
-                    divCard.style.display = "flex"     
+                    divCard.style.display = 'flex'   
                     peticion(result)
                 }else{
-                    divLogin.style.display = "flex";         
+                    divLogin.style.display = "flex"
+                      
                 }
             };
     
@@ -280,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function() {
         request.onsuccess = (event) => {
             console.log("USER ID insertado de manera correcta"),
             divLogin.style.display = 'none'
-            divCard.style.display = 'block'
+            divCard.style.display = 'flex'
             peticion(cleanData)
         };
         request.onerror = (err) => { console.log("Error al insertar el USER ID" + err) };
@@ -387,6 +388,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var image = "<img class='vcardImage' src='"+ src +"' alt='NO PUDIMOS ENCONTRAR TU IMAGEN' id='vcardpwa'/>";
         container.innerHTML = image
     }
+    
 });
 
 if ("serviceWorker" in navigator) {
