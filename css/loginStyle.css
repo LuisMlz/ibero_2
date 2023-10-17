@@ -149,7 +149,7 @@ body {
   }
 
   .divVCard {
-    display: flex;
+    display: flex; 
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -165,6 +165,6 @@ body {
     font-weight: bold;
 }
 
-#divCard{
+#divCard, #divLogin{
   display: none;
 }
