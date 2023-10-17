@@ -5,18 +5,21 @@
     -- Description:	PWA creado con la finalidad de mostrar el VCARD en la app
                     asi como en el navegador.
     --Update:       Se agrego mejoras para la consulta de la información asi como
-                    la visibilidad de la interfaz.
+                    la visibilidad de la interfaz
     --Notes:        En IOS se han tenido problemas de compatibilidad en Android al 
                     parecer todo bien.
 */
 
-
-
 document.addEventListener("DOMContentLoaded", function() {
 
     window.addEventListener('load', () => {
-        const splashScreen = document.getElementById('splash-screen');
-        splashScreen.style.display = 'none';
+        if(detectarSistemaOperativo() != "Windows"){
+            const splashScreen = document.getElementById('splash-screen');
+            splashScreen.style.display = 'flex';
+            setTimeout(() => {
+              splashScreen.style.display = 'none';
+            }, 1000); 
+        }
       });
 
     //VARIABLES GLOBALES
