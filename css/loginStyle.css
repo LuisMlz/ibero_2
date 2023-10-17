@@ -180,13 +180,13 @@ body {
 @media (prefers-color-scheme: dark) {
   body {
     background-color: var(--color-fondo-oscuro);
-    color: var(--color-texto-oscuro);
+    /* color: var(--color-texto-oscuro); */
   }
 }
 
 @media (prefers-color-scheme: light) {
   body {
     background-color: var(--color-fondo-claro);
-    color: var(--color-texto-claro);
+    /* color: var(--color-texto-claro); */
   }
 }
