@@ -1,26 +1,23 @@
 /*
     -- Author:	Luis Melendez
     -- Create date: 11/09/2023
-    -- Update date: 25/09/2023 
+    -- Update date: 17/10/2023 
     -- Description:	PWA creado con la finalidad de mostrar el VCARD en la app
                     asi como en el navegador.
-    --Update:       Se agrego la libreria SweetAlert2 para las notificaciones, asi como
-                    DOMPurify para limpiar nuestras consultas e inputs de ataques
-                    XSS
+    --Update:       Se agrego mejoras para la consulta de la información asi como
+                    la visibilidad de la interfaz.
     --Notes:        En IOS se han tenido problemas de compatibilidad en Android al 
                     parecer todo bien.
 */
 
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
-    if ('Notification' in window) {
-        Notification.requestPermission().then(function(permission) {
-          if (permission === 'granted') {
-            console.log('Notification permission granted.');
-          }
-        });
-      }
-      
+    window.addEventListener('load', () => {
+        const splashScreen = document.getElementById('splash-screen');
+        splashScreen.style.display = 'none';
+      });
 
     //VARIABLES GLOBALES
     const authDB = indexedDB.open('vcard', 1);
@@ -66,8 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     divCard.style.display = 'flex'   
                     peticion(result)
                 }else{
-                    divLogin.style.display = "flex"
-                      
+                    divLogin.style.display = "flex"        
                 }
             };
     
