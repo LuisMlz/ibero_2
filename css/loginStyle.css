@@ -1,6 +1,8 @@
 
 body {
     font-family: 'Inter UI', sans-serif;
+
+    overflow: hidden;
   }
   .page {
     display: none;
