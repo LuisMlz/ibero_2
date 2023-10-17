@@ -15,10 +15,11 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('load', () => {
         if(detectarSistemaOperativo() != "Windows"){
             const splashScreen = document.getElementById('splash-screen');
-            splashScreen.style.display = 'flex';
+            splashScreen.style.animation = 'splashAnimation 2s'; // Aplica la animación
             setTimeout(() => {
-              splashScreen.style.display = 'none';
-            }, 1000); 
+            // Oculta el splash screen después de 2 segundos
+            splashScreen.style.display = 'none';
+            }, 2000); 
         }
       });
 
