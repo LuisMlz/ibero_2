@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
                 splash.style.display = 'none';
             }, 1000); // Ajusta la duración de la animación de fade in
-        }, 2000); 
+        }, 1000); 
     
     }
     //VARIABLES GLOBALES
