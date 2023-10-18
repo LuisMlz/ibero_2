@@ -212,10 +212,17 @@ body {
   text-align: center;
 }
 
-.inicio {
-  font-size: 50px;
-  margin-bottom: 90px;
+.splashTexto {
+  font-size: 40px;
+  margin-bottom: 40px;
+  margin-top: -50px;
 }
+
+.subtituloSplash {
+  font-size: 18px; /* Tamaño del subtítulo */ /* Color del subtítulo */
+  margin-top: 40px;  /* Espacio entre el título y el subtítulo */
+}
+
 
   /* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
 
@@ -223,7 +230,7 @@ body {
   body,#splash {
     background-color: var(--color-gris);
   }
-  .inicio{
+  .splashTexto,.subtituloSplash{
     color: var(--color-blanco);
   }
 }
@@ -232,7 +239,7 @@ body {
   body,#splash {
     background-color: var(--color-blanco);
   }
-  .inicio{
+  .splashTexto,.subtituloSplash{
     color: var(--color-ibero);
   }
 }
