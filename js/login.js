@@ -11,22 +11,14 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    //VARIABLES GLOBALES
-    const authDB = indexedDB.open('vcard', 1);
-    const divLogin = document.getElementById("divLogin")
-    const divCard = document.getElementById("divCard")
-    const passwordInput = document.getElementById('password');
-    const loginButton = document.getElementById('btnLogin');
-    const splash = document.getElementById('splash');
-    const container = document.querySelector(".divVCard");
-    const userInput = document.getElementById('user');
-    const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
-    const soExcluidos = ["Windows", "macOS", "Linux","Desconocido","Android"];
+    var soExcluidos = ["Windows", "macOS", "Linux","Desconocido"];
 
     //SPLASH DE INICIO
     if(!soExcluidos.includes(detectarSistemaOperativo())){
         //VALIDAMOS SI SE ABRIO EN SAFARI O YA ESTA INSTALADO
+        var isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
         if (isInStandaloneMode) {
+            var splash = document.getElementById('splash');
             splash.style.display = "flex";
             setTimeout(function() {
                 splash.style.opacity = '0';
@@ -37,6 +29,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     }
+
+    //VARIABLES GLOBALES
+    var authDB = indexedDB.open('vcard', 1);
+    var divLogin = document.getElementById("divLogin")
+    var divCard = document.getElementById("divCard")
+    var passwordInput = document.getElementById('password');
+    var loginButton = document.getElementById('btnLogin');
+    var container = document.querySelector(".divVCard");
+    var userInput = document.getElementById('user');
 
     checkAuthentication()
     banner()
