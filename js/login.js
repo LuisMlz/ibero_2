@@ -12,6 +12,19 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
+    if(detectarSistemaOperativo() != "Windows"){
+        const splash = document.getElementById('splash');
+        splash.style.display = "flex";
+        setTimeout(function() {
+            
+            splash.style.opacity = '0';
+    
+            setTimeout(function() {
+                splash.style.display = 'none';
+            }, 1000); // Ajusta la duración de la animación de fade in
+        }, 2000); 
+    
+    }
     //VARIABLES GLOBALES
     const authDB = indexedDB.open('vcard', 1);
     var divLogin = document.getElementById("divLogin")
