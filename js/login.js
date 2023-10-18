@@ -17,14 +17,12 @@ document.addEventListener("DOMContentLoaded", function() {
     if(!soExcluidos.includes(detectarSistemaOperativo())){
         const splash = document.getElementById('splash');
         splash.style.display = "flex";
-        setTimeout(function() {
-            
+        setTimeout(function() {        
             splash.style.opacity = '0';
-    
             setTimeout(function() {
                 splash.style.display = 'none';
             }, 1000); // Ajusta la duración de la animación de fade in
-        }, 1000); 
+        }, 2000); 
     
     }
     //VARIABLES GLOBALES
