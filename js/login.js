@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const container = document.querySelector(".divVCard");
     const userInput = document.getElementById('user');
     const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
-    const soExcluidos = ["Windows", "macOS", "Linux","Desconocido",];
+    const soExcluidos = ["Windows", "macOS", "Linux","Desconocido","Android"];
 
     //SPLASH DE INICIO
     if(!soExcluidos.includes(detectarSistemaOperativo())){
