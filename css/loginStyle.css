@@ -218,7 +218,13 @@ body {
   margin-top: -50px;
 }
 
-/* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
+.subtituloSplash {
+  font-size: 20px; 
+  margin-top: 40px;
+}
+
+
+  /* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
 
 @media (prefers-color-scheme: dark) {
   body,#splash {
