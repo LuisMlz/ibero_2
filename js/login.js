@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const splash = document.getElementById('splash');
     const container = document.querySelector(".divVCard");
     const userInput = document.getElementById('user');
-    const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
+    const isInStandaloneMode = window.matchMedia('(display-mode: fullscreen)').matches;
     const soExcluidos = ["Windows", "macOS", "Linux","Desconocido",];
 
     //SPLASH DE INICIO
