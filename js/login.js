@@ -12,7 +12,9 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    if(detectarSistemaOperativo() != "Windows"){
+    const soExcluidos = ["Windows", "macOS", "Linux","Desconocido"];
+    //SPLASH DE INICIO
+    if(!soExcluidos.includes(detectarSistemaOperativo())){
         const splash = document.getElementById('splash');
         splash.style.display = "flex";
         setTimeout(function() {
