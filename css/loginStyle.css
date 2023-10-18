@@ -8,9 +8,7 @@
 }
 
 body {
-    /* Utilizar la familia de fuentes San Francisco */
-  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', sans-serif;
-
+    font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', sans-serif;
   }
 
 /* FORMULARIO LOGIN */
