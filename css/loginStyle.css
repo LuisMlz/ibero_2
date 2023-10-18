@@ -1,4 +1,5 @@
 /* COLORES GLOBALES */
+
 :root {
   --color-gris: #333;
   --color-blanco: #fff;
@@ -6,11 +7,12 @@
   --color-ibero: #c8041a;
 }
 
-
 body {
     font-family: 'Inter UI', sans-serif;
   }
-  /* FORMULARIO LOGIN */
+
+/* FORMULARIO LOGIN */
+
   .page {
     display: none;
     flex-direction: column;
@@ -157,7 +159,7 @@ body {
       border-color: var(--color-ibero) !important;
   }
 
-  /* DIV DE LA IMAGEN  */
+/* DIV DE LA IMAGEN  */
 
   .divVCard {
     display: none;
@@ -180,7 +182,8 @@ body {
 
 }
 
-  /* SPLASH DE INICIO  */
+/* SPLASH DE INICIO  */
+
 #splash {
   position: fixed;
   top: 0;
@@ -193,6 +196,7 @@ body {
   z-index: 9999; 
   opacity: 1; 
   transition: opacity 1s ease-in-out; 
+  text-align: center;
 }
 
 .fade {
@@ -203,8 +207,14 @@ body {
   border-radius: 5%;
   max-width: 40%;
   max-height: 40%;
-  display: flex;
-  justify-content: center;
+}
+.splash-content {
+  text-align: center;
+}
+
+.inicio {
+  font-size: 50px;
+  margin-bottom: 100px;
 }
 
   /* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
@@ -213,10 +223,16 @@ body {
   body,#splash {
     background-color: var(--color-gris);
   }
+  .inicio{
+    color: var(--color-blanco);
+  }
 }
 
 @media (prefers-color-scheme: light) {
   body,#splash {
     background-color: var(--color-blanco);
+  }
+  .inicio{
+    color: var(--color-ibero);
   }
 }
