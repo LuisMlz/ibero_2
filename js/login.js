@@ -16,14 +16,18 @@ document.addEventListener("DOMContentLoaded", function() {
     //SPLASH DE INICIO
     if(!soExcluidos.includes(detectarSistemaOperativo())){
         const splash = document.getElementById('splash');
-        splash.style.display = "flex";
+        const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
+        if (isInStandaloneMode) {
+            splash.style.display = "flex";
+        }
+       
         setTimeout(function() {        
             splash.style.opacity = '0';
             setTimeout(function() {
                 splash.style.display = 'none';
             }, 1000); // Ajusta la duración de la animación de fade in
         }, 2000); 
-    
+
     }
     //VARIABLES GLOBALES
     const authDB = indexedDB.open('vcard', 1);
