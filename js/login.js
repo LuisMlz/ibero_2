@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const soExcluidos = ["Windows", "macOS", "Linux","Desconocido"];
 
     //SPLASH DE INICIO
-    if(soExcluidos.includes(detectarSistemaOperativo())){
+    if(!soExcluidos.includes(detectarSistemaOperativo())){
 
         //VALIDAMOS SI SE ABRIO EN SAFARI O YA ESTA INSTALADO
-        if (!isInStandaloneMode) {
+        if (isInStandaloneMode) {
             splash.style.display = "flex";
             setTimeout(function() {
                 splash.style.opacity = '0';
