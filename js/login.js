@@ -15,18 +15,20 @@ document.addEventListener("DOMContentLoaded", function() {
     const soExcluidos = ["Windows", "macOS", "Linux","Desconocido"];
     //SPLASH DE INICIO
     if(!soExcluidos.includes(detectarSistemaOperativo())){
+
+        //VALIDAMOS SI SE ABRIO EN SAFARI O YA ESTA INSTALADO
         const splash = document.getElementById('splash');
         const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
+
         if (isInStandaloneMode) {
             splash.style.display = "flex";
+            setTimeout(function() {        
+                splash.style.opacity = '0';
+                setTimeout(function() {
+                    splash.style.display = 'none';
+                }, 1000);
+            }, 2000); 
         }
-       
-        setTimeout(function() {        
-            splash.style.opacity = '0';
-            setTimeout(function() {
-                splash.style.display = 'none';
-            }, 1000); // Ajusta la duración de la animación de fade in
-        }, 2000); 
 
     }
     //VARIABLES GLOBALES
