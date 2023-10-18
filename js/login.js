@@ -1,25 +1,32 @@
 /*
     -- Author:	Luis Melendez
     -- Create date: 11/09/2023
-    -- Update date: 17/10/2023 
+    -- Update date: 18/10/2023 
     -- Description:	PWA creado con la finalidad de mostrar el VCARD en la app
                     asi como en el navegador.
-    --Update:       Se agrego mejoras para la consulta de la información asi como
-                    la visibilidad de la interfaz
+    --Update:       Se agrego SPLASH de inicio solo cuando este instalada la app
     --Notes:        En IOS se han tenido problemas de compatibilidad en Android al 
                     parecer todo bien.
 */
 
 document.addEventListener("DOMContentLoaded", function() {
 
+    //VARIABLES GLOBALES
+    const authDB = indexedDB.open('vcard', 1);
+    const divLogin = document.getElementById("divLogin")
+    const divCard = document.getElementById("divCard")
+    const passwordInput = document.getElementById('password');
+    const loginButton = document.getElementById('btnLogin');
+    const splash = document.getElementById('splash');
+    const container = document.querySelector(".divVCard");
+    const userInput = document.getElementById('user');
+    const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
     const soExcluidos = ["Windows", "macOS", "Linux","Desconocido"];
+
     //SPLASH DE INICIO
     if(!soExcluidos.includes(detectarSistemaOperativo())){
 
         //VALIDAMOS SI SE ABRIO EN SAFARI O YA ESTA INSTALADO
-        const splash = document.getElementById('splash');
-        const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
-
         if (isInStandaloneMode) {
             splash.style.display = "flex";
             setTimeout(function() {        
@@ -31,14 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     }
-    //VARIABLES GLOBALES
-    const authDB = indexedDB.open('vcard', 1);
-    var divLogin = document.getElementById("divLogin")
-    var divCard = document.getElementById("divCard")
-    const container = document.querySelector(".divVCard");
-    const userInput = document.getElementById('user');
-    const passwordInput = document.getElementById('password');
-    const loginButton = document.getElementById('btnLogin');
     
     checkAuthentication()
     banner()
@@ -90,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     }
 
-    // INICIAMOS SESIÓN
+    //INICIAMOS SESIÓN
     loginButton.addEventListener('click', () => {
 
         const user = userInput.value;
@@ -248,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
-    // DETECTAR SISTEMA OPERATIVO
+    //DETECTAR SISTEMA OPERATIVO
     function detectarSistemaOperativo() {
         const userAgent = navigator.userAgent;
 
@@ -393,7 +392,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     }
     
-
+    //CREACIÓN DE LA IMAGEN
     function createImage(src){
         container.innerHTML = ""
         var image = "<img class='vcardImage' src='"+ src +"' alt='NO PUDIMOS ENCONTRAR TU IMAGEN' id='vcardpwa'/>";
