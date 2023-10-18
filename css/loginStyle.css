@@ -8,7 +8,9 @@
 }
 
 body {
-    font-family: 'Inter UI', sans-serif;
+    /* Utilizar la familia de fuentes San Francisco */
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', sans-serif;
+
   }
 
 /* FORMULARIO LOGIN */
@@ -213,12 +215,12 @@ body {
 }
 
 .splashTexto {
-  font-size: 40px;
+  font-size: 50px;
   margin-bottom: 40px;
   margin-top: -50px;
 }
 
-  /* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
+/* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
 
 @media (prefers-color-scheme: dark) {
   body,#splash {
