@@ -224,7 +224,7 @@ body {
 }
 
 
-  /* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
+/* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
 
 @media (prefers-color-scheme: dark) {
   body,#splash {
