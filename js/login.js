@@ -10,11 +10,11 @@
 */
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.body.style.display = 'block';
+
     var soIncluidos = ["iOS"];
 
     //SPLASH DE INICIO
-    if(soIncluidos.includes(detectarSistemaOperativo())){
+    if(soExcluidos.includes(detectarSistemaOperativo())){
         //VALIDAMOS SI SE ABRIO EN SAFARI O YA ESTA INSTALADO
         var isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
         if (isInStandaloneMode) {
