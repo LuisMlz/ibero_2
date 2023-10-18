@@ -4,7 +4,254 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="css/loginStyle.css" as="style">
-    <link rel="stylesheet" href="css/loginStyle.css">
+    <!-- <link rel="stylesheet" href="css/loginStyle.css"> -->
+    <style>
+      /* COLORES GLOBALES */
+
+:root {
+  --color-gris: #333;
+  --color-blanco: #fff;
+  --color-negro: #000;
+  --color-ibero: #c8041a;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', sans-serif;
+  }
+
+/* FORMULARIO LOGIN */
+
+  .page {
+    display: none;
+    flex-direction: column;
+    height: calc(100% - 40px);
+    position: absolute;
+    place-content: center;
+    width: calc(100% - 15px);
+  }
+  @media (max-width: 767px) {
+    .page {
+      height: auto;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+    }
+  }
+  .container {
+    display: flex;
+    height: 320px;
+    margin: 0 auto;
+    width: 640px;
+  
+  }
+  @media (max-width: 767px) {
+    .container {
+      flex-direction: column;
+      height: 630px;
+      width: 320px;
+    }
+  }
+  .left {
+    background-color: #ECF0F1;
+    height: calc(100% - 40px);
+    top: 20px;
+    position: relative;
+    width: 50%;
+  }
+  @media (max-width: 767px) {
+    .left {
+      height: 100%;
+      left: 20px;
+      width: calc(100% - 40px);
+      max-height: 270px;
+    }
+  }
+  .login {
+    font-size: 35px;
+    font-weight: 900;
+    margin: 40px 40px 40px;
+  }
+  .eula {
+    color: var(--color-ibero);
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 40px;
+  }
+  .pwa{
+    color: var(--color-ibero);
+    text-decoration: none;
+  }
+  .right {
+    background: var(--color-ibero);
+    box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
+    color: #F1F1F2;
+    position: relative;
+    width: 50%;
+  }
+  @media (max-width: 767px) {
+    .right {
+      flex-shrink: 0;
+      height: 100%;
+      width: 100%;
+      max-height: 320px;
+    }
+  }
+  .form {
+    margin: 30px;
+    position: absolute;
+  }
+  label {
+    color:  var(--color-blanco);
+    display: block;
+    font-size: 14px;
+    height: 16px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  input {
+    background: var(--color-blanco);
+    border: 0;
+    color: var(--color-negro);
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    outline: none !important;
+    width: 100%;
+  }
+  input::-moz-focus-inner { 
+    border: 0; 
+  }
+  
+  #btnLogin {
+      background-color: var(--color-blanco);
+      border: none;
+      color: var(--color-negro);
+      padding: 10px 20px;
+      text-align: center;
+      margin: 20px 80px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  
+    .img{
+      border-radius: 50%;
+  }
+  
+    .install-banner {
+      display: none;
+      background-color: #F0F3F4;
+      text-align: center;
+      padding: 16px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+  
+    #install-button, #dismiss-button {
+      background-color: var(--color-ibero);
+      border: none;
+      color: var(--color-blanco);
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .swal2-confirm {
+      background-color: var(--color-ibero) !important;
+      color: var(--color-blanco);
+      border-color: var(--color-ibero) !important;
+  }
+
+/* DIV DE LA IMAGEN  */
+
+  .divVCard {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.vcardImage {
+    border-radius: 2%;
+    max-width: 100%;
+    max-height: 100%;
+    height: 94%;
+    display: block;
+    margin: auto;
+    color: var(--color-ibero);
+    font-weight: bold;
+
+}
+
+/* SPLASH DE INICIO  */
+
+#splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; 
+  opacity: 1; 
+  transition: opacity 1s ease-in-out; 
+  text-align: center;
+}
+
+.fade {
+  opacity: 0;
+}
+
+#splashImagen{
+  border-radius: 5%;
+  max-width: 40%;
+  max-height: 40%;
+}
+.splash-content {
+  text-align: center;
+}
+
+.splashTexto {
+  font-size: 50px;
+  margin-bottom: 40px;
+  margin-top: -50px;
+}
+
+.subtituloSplash {
+  font-size: 18px; 
+  margin-top: 40px;
+}
+
+
+/* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
+
+@media (prefers-color-scheme: dark) {
+  body,#splash {
+    background-color: var(--color-gris);
+  }
+  .splashTexto,.subtituloSplash{
+    color: var(--color-blanco);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body,#splash {
+    background-color: var(--color-blanco);
+  }
+  .splashTexto,.subtituloSplash{
+    color: var(--color-ibero);
+  }
+}
+    </style>
     <link rel="manifest" href="manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="images/icons/vcard-72x72.png">
