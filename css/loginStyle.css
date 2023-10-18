@@ -213,13 +213,13 @@ body {
 }
 
 .splashTexto {
-  font-size: 40px;
+  font-size: 50px;
   margin-bottom: 40px;
   margin-top: -50px;
 }
 
 .subtituloSplash {
-  font-size: 18px; /* Tamaño del subtítulo */ /* Color del subtítulo */
+  font-size: 30px; /* Tamaño del subtítulo */ /* Color del subtítulo */
   margin-top: 40px;  /* Espacio entre el título y el subtítulo */
 }
 
