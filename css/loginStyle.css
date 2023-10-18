@@ -196,7 +196,6 @@ body {
   z-index: 9999; 
   opacity: 1; 
   transition: opacity 1s ease-in-out; 
-  text-align: center;
 }
 
 .fade {
@@ -204,6 +203,7 @@ body {
 }
 
 #splashImagen{
+  margin-bottom: 50px;
   border-radius: 5%;
   max-width: 40%;
   max-height: 40%;
@@ -214,10 +214,11 @@ body {
 
 .inicio {
   font-size: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
+
 }
 
-/* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
+  /* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
 
 @media (prefers-color-scheme: dark) {
   body,#splash {
