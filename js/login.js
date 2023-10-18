@@ -10,7 +10,7 @@
 */
 
 document.addEventListener("DOMContentLoaded", function() {
-
+    document.body.style.display = 'block';
     var soIncluidos = ["iOS"];
 
     //SPLASH DE INICIO
