@@ -1,7 +1,15 @@
+:root {
+  --color-gris: #333;
+  --color-blanco: #fff;
+  --color-negro: #000;
+  --color-ibero: #c8041a;
+}
+
 
 body {
     font-family: 'Inter UI', sans-serif;
   }
+  /* FORMULARIO LOGIN */
   .page {
     display: none;
     flex-direction: column;
@@ -52,17 +60,17 @@ body {
     margin: 40px 40px 40px;
   }
   .eula {
-    color: #c8041a;
+    color: var(--color-ibero);
     font-size: 16px;
     line-height: 1.5;
     margin: 40px;
   }
   .pwa{
-    color: #c8041a;
+    color: var(--color-ibero);
     text-decoration: none;
   }
   .right {
-    background: #c8041a;
+    background: var(--color-ibero);
     box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
     color: #F1F1F2;
     position: relative;
@@ -81,7 +89,7 @@ body {
     position: absolute;
   }
   label {
-    color:  white;
+    color:  var(--color-blanco);
     display: block;
     font-size: 14px;
     height: 16px;
@@ -89,9 +97,9 @@ body {
     margin-bottom: 5px;
   }
   input {
-    background: white;
+    background: var(--color-blanco);
     border: 0;
-    color: black;
+    color: var(--color-negro);
     font-size: 20px;
     height: 30px;
     line-height: 30px;
@@ -103,9 +111,9 @@ body {
   }
   
   #btnLogin {
-      background-color: white    ;
+      background-color: var(--color-blanco);
       border: none;
-      color: black;
+      color: var(--color-negro);
       padding: 10px 20px;
       text-align: center;
       margin: 20px 80px;
@@ -130,9 +138,9 @@ body {
     }
   
     #install-button, #dismiss-button {
-      background-color: #c8041a;
+      background-color: var(--color-ibero);
       border: none;
-      color: white;
+      color: var(--color-blanco);
       padding: 10px 20px;
       text-align: center;
       text-decoration: none;
@@ -143,10 +151,12 @@ body {
     }
 
     .swal2-confirm {
-      background-color: #c8041a !important; /* Cambiar el fondo del botón a verde */
-      color: white;
-      border-color: #c8041a !important; /* Cambiar el color del texto del botón a blanco */
+      background-color: var(--color-ibero) !important;
+      color: var(--color-blanco);
+      border-color: var(--color-ibero) !important;
   }
+
+  /* DIV DE LA IMAGEN  */
 
   .divVCard {
     display: none;
@@ -164,27 +174,28 @@ body {
     height: 94%;
     display: block;
     margin: auto;
-    color: #c8041a;
+    color: var(--color-ibero);
     font-weight: bold;
 
 }
 
+  /* SPLASH DE INICIO  */
 #splash {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; /* Color de fondo del splash */
+  height: 100%;
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Asegúrate de que esté encima de otros elementos */
-  opacity: 1; /* Empieza completamente visible */
-  transition: opacity 1s ease-in-out; /* Animación de desvanecimiento */
+  z-index: 9999; 
+  opacity: 1; 
+  transition: opacity 1s ease-in-out; 
 }
 
 .fade {
-  opacity: 0; /* Desvanecer a la transparencia */
+  opacity: 0;
 }
 
 #splashImagen{
@@ -195,23 +206,16 @@ body {
   justify-content: center;
 }
 
-:root {
-  --color-fondo-oscuro: #333;
-  --color-texto-oscuro: #fff;
-  --color-fondo-claro: #fff;
-  --color-texto-claro: #333;
-}
+  /* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
 
 @media (prefers-color-scheme: dark) {
   body,#splash {
-    background-color: var(--color-fondo-oscuro);
-    /* color: var(--color-texto-oscuro); */
+    background-color: var(--color-gris);
   }
 }
 
 @media (prefers-color-scheme: light) {
   body,#splash {
-    background-color: var(--color-fondo-claro);
-    /* color: var(--color-texto-claro); */
+    background-color: var(--color-blanco);
   }
 }
