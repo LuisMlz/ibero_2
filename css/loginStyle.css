@@ -200,8 +200,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  max-width: 80%;
+  max-width: 80%;
   background-color: #F4F6F7; /* Color de fondo del splash */
   display: none;
   justify-content: center;
