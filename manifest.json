@@ -2,7 +2,7 @@
     "name": "Virtual Card Ibero",
     "short_name": "VCard Ibero",
     "start_url": "index.html",
-    "display": "fullscreen",
+    "display": "standalone",
     "background_color": "#fdfdfd",
     "theme_color": "#c8041a",
     "orientation": "portrait-primary",

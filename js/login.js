@@ -20,12 +20,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const splash = document.getElementById('splash');
     const container = document.querySelector(".divVCard");
     const userInput = document.getElementById('user');
-    const isInStandaloneMode = window.matchMedia('(display-mode: fullscreen)').matches;
+    const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
     const soExcluidos = ["Windows", "macOS", "Linux","Desconocido",];
 
     //SPLASH DE INICIO
     if(!soExcluidos.includes(detectarSistemaOperativo())){
-        alert(detectarSistemaOperativo())
         //VALIDAMOS SI SE ABRIO EN SAFARI O YA ESTA INSTALADO
         if (isInStandaloneMode) {
             splash.style.display = "flex";
