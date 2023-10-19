@@ -32,14 +32,25 @@ self.addEventListener('activate', function(event) {
   );
 });
 
+// self.addEventListener('fetch', function(event) {
+//   event.respondWith(
+//     fetch(event.request).then(function(response) {
+//       console.log("entro al fetch")
+//       return response;
+//     }).catch(function(error) {
+//       console.error('Error al recuperar la solicitud:', error);
+//       return new Response('Error al cargar la página.');
+//     })
+//   );
+// });
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    fetch(event.request).then(function(response) {
-      console.log("entro al fetch")
-      return response;
-    }).catch(function(error) {
-      console.error('Error al recuperar la solicitud:', error);
-      return new Response('Error al cargar la página.');
+    caches.match(event.request).then(function(response) {
+      if (response) {
+        console.log("desde el cache")
+        return response;
+      }
+      return fetch(event.request);
     })
   );
 });
