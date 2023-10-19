@@ -414,7 +414,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // }
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./serviceWorker.js', { scope: '/' + CACHE_NAME })
+    navigator.serviceWorker.register('./serviceWorker.js', { scope: './' + CACHE_NAME })
       .then((registration) => {
         console.log('Service Worker registrado con éxito.', registration.scope);
       })
