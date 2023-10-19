@@ -15,19 +15,22 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     
-    var soIncluidos = ["Windows"];
+    var soIncluidos = ["iOS"];
     
     //SPLASH DE INICIO
     if(soIncluidos.includes(detectarSistemaOperativo())){
         //VALIDAMOS SI SE ABRIO EN SAFARI O YA ESTA INSTALADO
-        var splash = document.getElementById('splash');
-        splash.style.display = "flex";
-        setTimeout(function() {
-            splash.style.opacity = '0';
+        var isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
+        if (isInStandaloneMode) {
+            var splash = document.getElementById('splash');
+            splash.style.display = "flex";
             setTimeout(function() {
-                splash.style.display = 'none';
-            }, 1000);
-        }, 2000);
+                splash.style.opacity = '0';
+                setTimeout(function() {
+                    splash.style.display = 'none';
+                }, 1000);
+            }, 2000);
+        }
 
     }
 
