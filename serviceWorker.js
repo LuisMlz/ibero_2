@@ -1,6 +1,4 @@
-
-//CAMBIO DE VERSIÓN
-const CACHE_VERSION = 1.6;
+const CACHE_VERSION = 1.0;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
@@ -17,6 +15,7 @@ self.addEventListener('install', function(event) {
   );
 });
 
+
 self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
@@ -28,17 +27,6 @@ self.addEventListener('activate', function(event) {
           }
         })
       );
-    }).then(() => {
-      // Una vez que se han limpiado las cachés antiguas y la activación se ha completado
-      // Forzar la recarga de la página
-      console.log("entro al forzado dentro SW")
-      return self.clients.claim().then(() => {
-        return self.clients.matchAll().then((clients) => {
-          clients.forEach((client) => {
-            client.postMessage({ type: 'cache-updated' });
-          });
-        });
-      });
     })
   );
   console.log('Nueva versión instalada');

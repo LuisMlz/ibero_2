@@ -13,15 +13,9 @@
                     cambien el cache anterior almacenado.
 */
 
+
 document.addEventListener("DOMContentLoaded", function() {
     
-    navigator.serviceWorker.addEventListener('message', (event) => {
-        if (event.data.type === 'cache-updated') {
-          console.log("entro a la recarga")
-          location.reload();
-        }
-    });
-
     var soIncluidos = ["iOS"];
     
     //SPLASH DE INICIO
