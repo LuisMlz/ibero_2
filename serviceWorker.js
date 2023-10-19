@@ -1,35 +1,43 @@
-const staticVCard = "vcard-v1";
+const CACHE_VERSION = 1;
+const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
+
 const assets = [
   "./",
   "./js/login.js",
   "./index.html",
   "./css/loginStyle.css",
 ];
-
-self.addEventListener("install", installEvent => {
-  installEvent.waitUntil(
-    caches.open(staticVCard).then(cache => {
-      cache.addAll(assets);
-    })
-  );
-});
-
-self.addEventListener("fetch", fetchEvent => {
-  fetchEvent.respondWith(
-    caches.match(fetchEvent.request).then(res => {
-      return res || fetch(fetchEvent.request);
-    })
-  );
-});
-
-//Agregamos notificaciones push
-self.addEventListener('push', function(event) {
-  const options = {
-    body: event.data.text(),
-    // icon: 'icon.png',
-  };
-
+self.addEventListener('install', function(event) {
   event.waitUntil(
-    self.registration.showNotification('Push Notification', options)
+    caches.open(CACHE_NAME).then(function(cache) {
+      return cache.addAll(assets);
+    })
   );
+});
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request);
+    })
+  );
+});
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (cacheName !== CACHE_NAME) {
+            console.log('Eliminando caché antigua:', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+  console.log('Nueva versión instalada');
 });
