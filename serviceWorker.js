@@ -1,6 +1,6 @@
 
 //CAMBIO DE VERSIÓN
-const CACHE_VERSION = 1.9;
+const CACHE_VERSION = 1.0;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
@@ -13,17 +13,6 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll(assets);
-    })
-  );
-});
-
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      if (response) {
-        return response;
-      }
-      return fetch(event.request);
     })
   );
 });
@@ -42,4 +31,15 @@ self.addEventListener('activate', function(event) {
     })
   );
   console.log('Nueva versión instalada');
+});
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request);
+    })
+  );
 });
