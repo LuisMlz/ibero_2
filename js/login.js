@@ -1,19 +1,26 @@
 /*
     -- Author:	Luis Melendez
     -- Create date: 11/09/2023
-    -- Update date: 18/10/2023
+    -- Update date: 19/10/2023
     -- Description:	PWA creado con la finalidad de mostrar el VCARD en la app
                     asi como en el navegador.
-    --Update:       Se agrego SPLASH de inicio solo cuando este instalada la app
+    --Update:       Se agrego el cambio de cache para cuando se suba una nueva
+                    versión al servidor automaticamente el service worker cambie
+                    la versión por la mas nueva y se vean reflejados los cambios
     --Notes:        En IOS se han tenido problemas de compatibilidad en Android al
-                    parecer todo bien.
+                    parecer todo bien. En cuestión al manejo del cache en Chrome
+                    tarda de 3 a 7 minutos en verse reflejados los cambios para que
+                    cambien el cache anterior almacenado.
 */
-const CACHE_VERSION = 3.3;
+
+//CAMBIO DE VERSIÓN
+const CACHE_VERSION = 1.0;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 document.addEventListener("DOMContentLoaded", function() {
     
     var soIncluidos = ["iOS"];
+    
     //SPLASH DE INICIO
     if(soIncluidos.includes(detectarSistemaOperativo())){
         //VALIDAMOS SI SE ABRIO EN SAFARI O YA ESTA INSTALADO
@@ -405,24 +412,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-// if ("serviceWorker" in navigator) {
-//     window.addEventListener("load", function () {
-//         navigator.serviceWorker.register('./serviceWorker.js', { scope: '/' + CACHE_NAME })
-//           .then(function(registration) {
-//             console.log('Service Worker registered with scope:', registration.scope);
-//           })
-//           .catch(function(error) {
-//             console.error('Service Worker registration failed:', error);
-//           });
-//     });
-// }
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register('./serviceWorker.js', { scope: './' + CACHE_NAME })
+          .then(function(registration) {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(function(error) {
+            console.error('Service Worker registration failed:', error);
+          });
+    });
+}
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./serviceWorker.js', { scope: './' + CACHE_NAME })
-      .then((registration) => {
-        console.log('Service Worker registrado con éxito.', registration.scope);
-      })
-      .catch((error) => {
-        console.error('Error al registrar el Service Worker:', error);
-      });
-  }
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('./serviceWorker.js', { scope: './' + CACHE_NAME })
+//       .then((registration) => {
+//         console.log('Service Worker registrado con éxito.', registration.scope);
+//       })
+//       .catch((error) => {
+//         console.error('Error al registrar el Service Worker:', error);
+//       });
+//   }
