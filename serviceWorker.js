@@ -2,10 +2,10 @@ const CACHE_VERSION = 1.0;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
-  "/",
-  "/js/login.js",
-  "/index.html",
-  "/css/loginStyle.css",
+  "./",
+  "./js/login.js",
+  "./index.html",
+  "./css/loginStyle.css",
 ];
 
 self.addEventListener('install', function(event) {
