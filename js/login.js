@@ -14,12 +14,12 @@
 */
 
 //CAMBIO DE VERSIÓN
-const CACHE_VERSION = 1.1;
+const CACHE_VERSION = 1.2;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 document.addEventListener("DOMContentLoaded", function() {
     
-    var soIncluidos = ["iOS"];
+    var soIncluidos = ["Android"];
     
     //SPLASH DE INICIO
     if(soIncluidos.includes(detectarSistemaOperativo())){
