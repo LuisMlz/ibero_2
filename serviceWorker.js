@@ -23,7 +23,7 @@ self.addEventListener('activate', function(event) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
           console.log(cacheName,' : ',cacheNames,' - ',CACHE_NAME)
-          if (cacheName == CACHE_NAME) {
+          if (cacheName !== CACHE_NAME) {
             console.log('Eliminando caché antigua:', cacheName);
             return caches.delete(cacheName);
           }
