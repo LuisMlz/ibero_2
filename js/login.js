@@ -16,14 +16,12 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     
-    var soIncluidos = ["iOS"];
+    var soIncluidos = ["Windows"];
     
     //SPLASH DE INICIO
     if(soIncluidos.includes(detectarSistemaOperativo())){
         //VALIDAMOS SI SE ABRIO EN SAFARI O YA ESTA INSTALADO
-        var isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
-        if (isInStandaloneMode) {
-            var splash = document.getElementById('splash');
+        var splash = document.getElementById('splash');
             splash.style.display = "flex";
             setTimeout(function() {
                 splash.style.opacity = '0';
@@ -31,8 +29,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     splash.style.display = 'none';
                 }, 1000);
             }, 2000);
-        }
-
     }
 
     //VARIABLES GLOBALES
