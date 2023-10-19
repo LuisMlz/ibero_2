@@ -16,6 +16,8 @@
     <link rel="apple-touch-icon" href="images/icons/vcard-512x512.png">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#c8041a">
+    <base href="./">
+
 </head>
 <body>
     <div id="splash" class="fade">
@@ -50,16 +52,15 @@
       <button id="dismiss-button">No, gracias</button>
     </div>
     <script>
-      if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./serviceWorker.js')
-        .then((registration) => {
-          console.log('Service Worker registrado con éxito.', registration.scope);
-          
-        })
-        .catch((error) => {
-          console.error('Error al registrar el Service Worker:', error);
-        });
-      }        
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/serviceWorker.js')
+          .then(function(registration) {
+            console.log('Service Worker registrado con éxito:', registration);
+          })
+          .catch(function(error) {
+            console.log('Error al registrar el Service Worker:', error);
+          });
+        }
     </script>
 </body>
 </html>

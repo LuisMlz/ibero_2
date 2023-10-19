@@ -13,7 +13,6 @@
                     cambien el cache anterior almacenado.
 */
 
-
 document.addEventListener("DOMContentLoaded", function() {
     
     var soIncluidos = ["iOS"];
