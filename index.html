@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+      //CAMBIO DE VERSIÓN
+      const CACHE_VERSION = 1.5;
+      const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
+
+      if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./serviceWorker.js', { scope: './' + CACHE_NAME })
+        .then((registration) => {
+          console.log('Service Worker registrado con éxito.', registration.scope);
+        })
+        .catch((error) => {
+          console.error('Error al registrar el Service Worker:', error);
+        });
+    }
+
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/loginStyle.css">

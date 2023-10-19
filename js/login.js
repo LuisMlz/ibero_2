@@ -13,10 +13,6 @@
                     cambien el cache anterior almacenado.
 */
 
-//CAMBIO DE VERSIÓN
-const CACHE_VERSION = 1.4;
-const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
-
 document.addEventListener("DOMContentLoaded", function() {
     
     var soIncluidos = ["iOS"];
@@ -411,13 +407,3 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
-
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./serviceWorker.js', { scope: './' + CACHE_NAME })
-      .then((registration) => {
-        console.log('Service Worker registrado con éxito.', registration.scope);
-      })
-      .catch((error) => {
-        console.error('Error al registrar el Service Worker:', error);
-      });
-  }
