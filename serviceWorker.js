@@ -1,11 +1,11 @@
-const CACHE_VERSION = 1.3
+const CACHE_VERSION = 1.0
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
-  "/",  
-  "/js/login.js",
-  "/index.html",
-  "/css/loginStyle.css",
+  "./",
+  "./js/login.js",
+  "./index.html",
+  "./css/loginStyle.css",
 ];
 
 self.addEventListener('install', function(event) {
@@ -18,12 +18,13 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('activate', function(event) {
   event.waitUntil(
+    self.clients.claim(),
     caches.keys().then(function(cacheNames) {
       return Promise.all(
-        cacheNames.map(function(name) {
-          if (name !== CACHE_NAME) {
-            console.log("elimina el anterior")
-            return caches.delete(name);
+        cacheNames.map(function(cacheName) {
+          if (cacheName !== CACHE_NAME) {
+            console.log('Eliminando caché antiguo:', cacheName);
+            return caches.delete(cacheName);
           }
         })
       );
@@ -33,27 +34,12 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
-      // Si se encuentra en caché, retorna la respuesta en caché
-      console.log(response)
-      if (response) {
-        console.log(response)
-        return response;
-      }
-        // Si no está en caché, realiza la solicitud a la red
-      return fetch(event.request);
-  
+    fetch(event.request).then(function(response) {
+      console.log("entro al fetch")
+      return response;
+    }).catch(function(error) {
+      console.error('Error al recuperar la solicitud:', error);
+      return new Response('Error al cargar la página.');
     })
   );
 });
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     fetch(event.request).then(function(response) {
-//       console.log("Entro al fetch")
-//       return response;
-//     }).catch(function(error) {
-//       console.error('Error al recuperar la solicitud:', error);
-//       return new Response('Error al cargar la página.');
-//     })
-//   );
-// });
