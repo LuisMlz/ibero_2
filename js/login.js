@@ -8,8 +8,7 @@
     --Notes:        En IOS se han tenido problemas de compatibilidad en Android al
                     parecer todo bien.
 */
-const CACHE_VERSION = 1;
-const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
+
 
 document.addEventListener("DOMContentLoaded", function() {
     
@@ -414,7 +413,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // }
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/ibero_2/serviceWorker.js', { scope: '/' + CACHE_NAME })
+    navigator.serviceWorker.register('./serviceWorker.js')
       .then((registration) => {
         console.log('Service Worker registrado con éxito.', registration.scope);
       })
