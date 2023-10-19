@@ -1,4 +1,4 @@
-const CACHE_VERSION = 1.1
+const CACHE_VERSION = 1.0
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
@@ -32,25 +32,25 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     fetch(event.request).then(function(response) {
-//       console.log("entro al fetch")
-//       return response;
-//     }).catch(function(error) {
-//       console.error('Error al recuperar la solicitud:', error);
-//       return new Response('Error al cargar la página.');
-//     })
-//   );
-// });
-self.addEventListener('fetch', function(event) {
+// Manejo del evento 'fetch'
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
-      if (response) {
-        console.log("desde el cache")
-        return response;
-      }
-      return fetch(event.request);
-    })
+    caches.match(event.request)
+      .then((response) => {
+        // Si el recurso se encuentra en caché, lo servimos desde la caché
+        if (response) {
+          return response;
+        }
+        // Si el recurso no se encuentra en caché, lo buscamos en la red y lo almacenamos en caché
+        return fetch(event.request)
+          .then((response) => {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseClone);
+              });
+            return response;
+          });
+      })
   );
 });
