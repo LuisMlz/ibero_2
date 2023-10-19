@@ -1,6 +1,6 @@
 
 //CAMBIO DE VERSIÓN
-const CACHE_VERSION = 1.3;
+const CACHE_VERSION = 1.4;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
