@@ -1,4 +1,4 @@
-const CACHE_VERSION = 1.0
+const CACHE_VERSION = 1.1
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
