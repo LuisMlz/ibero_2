@@ -8,7 +8,7 @@
     --Notes:        En IOS se han tenido problemas de compatibilidad en Android al
                     parecer todo bien.
 */
-const CACHE_VERSION = 3.1;
+const CACHE_VERSION = 3.2;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 document.addEventListener("DOMContentLoaded", function() {
