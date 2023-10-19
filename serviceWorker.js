@@ -28,6 +28,16 @@ self.addEventListener('activate', function(event) {
           }
         })
       );
+    }).then(() => {
+      // Una vez que se han limpiado las cachés antiguas y la activación se ha completado
+      // Forzar la recarga de la página
+      return self.clients.claim().then(() => {
+        return self.clients.matchAll().then((clients) => {
+          clients.forEach((client) => {
+            client.postMessage({ type: 'cache-updated' });
+          });
+        });
+      });
     })
   );
   console.log('Nueva versión instalada');
