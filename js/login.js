@@ -401,24 +401,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-        navigator.serviceWorker.register('./serviceWorker.js', { scope: '/' + CACHE_NAME })
-          .then(function(registration) {
-            console.log('Service Worker registered with scope:', registration.scope);
-          })
-          .catch(function(error) {
-            console.error('Service Worker registration failed:', error);
-          });
-    });
-}
+// if ("serviceWorker" in navigator) {
+//     window.addEventListener("load", function () {
+//         navigator.serviceWorker.register('./serviceWorker.js', { scope: '/' + CACHE_NAME })
+//           .then(function(registration) {
+//             console.log('Service Worker registered with scope:', registration.scope);
+//           })
+//           .catch(function(error) {
+//             console.error('Service Worker registration failed:', error);
+//           });
+//     });
+// }
 
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('./serviceWorker.js', { scope: '/' + CACHE_NAME })
-//       .then((registration) => {
-//         console.log('Service Worker registrado con éxito.', registration.scope);
-//       })
-//       .catch((error) => {
-//         console.error('Error al registrar el Service Worker:', error);
-//       });
-//   }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/ibero_2/serviceWorker.js', { scope: '/' + CACHE_NAME })
+      .then((registration) => {
+        console.log('Service Worker registrado con éxito.', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Error al registrar el Service Worker:', error);
+      });
+  }
