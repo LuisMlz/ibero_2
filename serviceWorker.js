@@ -1,11 +1,11 @@
-const CACHE_VERSION = 1.2;
+const CACHE_VERSION = 1.0;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
-  "./",
-  "./js/login.js",
-  "./index.html",
-  "./css/loginStyle.css",
+  "/",
+  "/js/login.js",
+  "/index.html",
+  "/css/loginStyle.css",
 ];
 
 self.addEventListener('install', function(event) {
@@ -16,13 +16,14 @@ self.addEventListener('install', function(event) {
   );
 });
 
-
 self.addEventListener('activate', function(event) {
   event.waitUntil(
+    self.clients.claim(), // Reclama el control de las páginas
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
-          if (cacheName !== CACHE_NAME) {
+          console.log(cacheName,' : ',cacheNames,' - ',CACHE_NAME)
+          if (cacheName == CACHE_NAME) {
             console.log('Eliminando caché antigua:', cacheName);
             return caches.delete(cacheName);
           }
@@ -30,18 +31,16 @@ self.addEventListener('activate', function(event) {
       );
     })
   );
-  console.log('Nueva versión instalada');
 });
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    fetch(event.request)
-      .then(function(response) {
-        console.log("CARGO CON RED")
-        return response;
-      })
-      .catch(function() {
-        return caches.match(event.request);
-      })
+    fetch(event.request).then(function(response) {
+      console.log("test")
+      return response;
+    }).catch(function(error) {
+      console.error('Error al recuperar la solicitud:', error);
+      return new Response('Error al cargar la página.');
+    })
   );
 });

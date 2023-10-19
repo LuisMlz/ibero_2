@@ -50,12 +50,8 @@
       <button id="dismiss-button">No, gracias</button>
     </div>
     <script>
-      //CAMBIO DE VERSIÓN
-      const CACHE_VERSION = 1.2;
-      const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
-
       if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./serviceWorker.js', { scope: './' + CACHE_NAME })
+      navigator.serviceWorker.register('./serviceWorker.js')
         .then((registration) => {
           console.log('Service Worker registrado con éxito.', registration.scope);
           
@@ -63,8 +59,7 @@
         .catch((error) => {
           console.error('Error al registrar el Service Worker:', error);
         });
-      }
-          
+      }        
     </script>
 </body>
 </html>
