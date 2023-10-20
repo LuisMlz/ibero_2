@@ -1,4 +1,4 @@
-const CACHE_VERSION = 1.0;
+const CACHE_VERSION = 1.1;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
@@ -32,17 +32,39 @@ self.addEventListener('activate', function(event) {
   );
 });
 
+// self.addEventListener('fetch', (event) => {
+//   event.respondWith(
+//     fetch(event.request)
+//       .catch(() => {
+//         // Si no se encuentra en la red, busca en la caché
+//         return caches.match(event.request)
+//           .then((response) => {
+//             // Si se encuentra en la caché, devuélvelo desde allí
+//             if (response) {
+//               console.log("devuelve el cache")
+//               return response;
+//             }
+//           });
+//       })
+//   );
+// });
+
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
+      .then((response) => {
+        // Si la red está disponible, devuelve la respuesta de la red
+        console.log("DESDE LA RED")
+        return response;
+      })
       .catch(() => {
-        // Si no se encuentra en la red, busca en la caché
+        // Si la red falla, busca en la caché
         return caches.match(event.request)
-          .then((response) => {
+          .then((cachedResponse) => {
             // Si se encuentra en la caché, devuélvelo desde allí
-            if (response) {
-              console.log("devuelve el cache")
-              return response;
+            if (cachedResponse) {
+              console.log("DESDE LA CACHE")
+              return cachedResponse;
             }
           });
       })
