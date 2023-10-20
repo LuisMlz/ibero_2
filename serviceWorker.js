@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mi-cache-v1.1.1';
+const CACHE_NAME = 'mi-cache-v1.0.0';
 
 // Archivos a cachear
 const urlsToCache = [
@@ -43,16 +43,4 @@ self.addEventListener('fetch', event => {
         return fetch(event.request);
       })
   );
-});
-
-// Agregar un evento para eliminar el caché
-self.addEventListener('message', event => {
-  if (event.data.action === 'borrar_cache') {
-    event.waitUntil(
-      caches.delete(CACHE_NAME)
-        .then(() => {
-          event.source.postMessage('Caché eliminado');
-        })
-    );
-  }
 });

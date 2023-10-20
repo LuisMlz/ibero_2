@@ -55,11 +55,6 @@
           navigator.serviceWorker.register('./serviceWorker.js')
             .then(registration => {
               console.log('Service Worker registrado con éxito:', registration);
-              navigator.serviceWorker.addEventListener('controllerchange', () => {
-                if (navigator.controller) {
-                  navigator.controller.postMessage({ action: 'borrar_cache' });
-                }
-              });
             })
             .catch(error => {
               console.error('Error al registrar el Service Worker:', error);
