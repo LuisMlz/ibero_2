@@ -1,4 +1,4 @@
-const CACHE_VERSION = 1.2;
+const CACHE_VERSION = 1.3;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
@@ -18,7 +18,10 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('activate', function(event) {
   event.waitUntil(
+    // 1. Reclamar control de las páginas abiertas por el Service Worker.
     self.clients.claim(),
+
+    // 2. Eliminar cachés antiguos que ya no son necesarios.
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
@@ -32,41 +35,10 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-// self.addEventListener('fetch', (event) => {
-//   event.respondWith(
-//     fetch(event.request)
-//       .catch(() => {
-//         // Si no se encuentra en la red, busca en la caché
-//         return caches.match(event.request)
-//           .then((response) => {
-//             // Si se encuentra en la caché, devuélvelo desde allí
-//             if (response) {
-//               console.log("devuelve el cache")
-//               return response;
-//             }
-//           });
-//       })
-//   );
-// });
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Si la red está disponible, devuelve la respuesta de la red
-        console.log("DESDE LA RED")
-        return response;
-      })
-      .catch(() => {
-        // Si la red falla, busca en la caché
-        return caches.match(event.request)
-          .then((cachedResponse) => {
-            // Si se encuentra en la caché, devuélvelo desde allí
-            if (cachedResponse) {
-              console.log("DESDE LA CACHE")
-              return cachedResponse;
-            }
-          });
-      })
+self.addEventListener("fetch", fetchEvent => {
+  fetchEvent.respondWith(
+    caches.match(fetchEvent.request).then(res => {
+      return res || fetch(fetchEvent.request);
+    })
   );
 });

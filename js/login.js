@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }, 2000);
         }
 
+    }else{
+        alert("SALE MENSAJE DE PRUEBA")
     }
 
     //VARIABLES GLOBALES
