@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mi-cache-v1.0.7';
+const CACHE_NAME = 'mi-cache-v1.0.0';
 
 // Archivos a cachear
 const urlsToCache = [
@@ -29,6 +29,8 @@ self.addEventListener('activate', event => {
           }
         })
       );
+    }).then(function() {
+      self.clients.claim();
     })
   );
 });
