@@ -1,16 +1,16 @@
 /*
     -- Author:	Luis Melendez
     -- Create date: 11/09/2023
-    -- Update date: 19/10/2023
+    -- Update date: 20/10/2023
     -- Description:	PWA creado con la finalidad de mostrar el VCARD en la app
                     asi como en el navegador.
     --Update:       Se agrego el cambio de cache para cuando se suba una nueva
                     versión al servidor automaticamente el service worker cambie
                     la versión por la mas nueva y se vean reflejados los cambios
     --Notes:        En IOS se han tenido problemas de compatibilidad en Android al
-                    parecer todo bien. En cuestión al manejo del cache en Chrome
-                    tarda de 3 a 7 minutos en verse reflejados los cambios para que
-                    cambien el cache anterior almacenado.
+                    parecer todo bien. Se agrego la eliminación del cache anterior
+                    cuando cambie algo del codigo asi como animación al splash de
+                    inicio.
 */
 
 
@@ -24,13 +24,22 @@ document.addEventListener("DOMContentLoaded", function() {
         var isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
         if (isInStandaloneMode) {
             var splash = document.getElementById('splash');
+            var textoSplash = document.querySelector('.splashTexto');
+            var imagenSplash = document.getElementById('splashImagen');
+
             splash.style.display = "flex";
             setTimeout(function() {
-                splash.style.opacity = '0';
+                textoSplash.style.opacity = '1';
                 setTimeout(function() {
-                    splash.style.display = 'none';
-                }, 1000);
-            }, 2000);
+                    imagenSplash.style.opacity = '1';
+                    setTimeout(function() {
+                        splash.style.opacity = '0';
+                        setTimeout(function() {
+                            splash.style.display = 'none';
+                        }, 600); 
+                    }, 600); 
+                }, 600); 
+            }, 1000); 
         }
 
     }

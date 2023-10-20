@@ -5,7 +5,6 @@
   --color-blanco: #fff;
   --color-negro: #000;
   --color-ibero: #c8041a;
-  /* --color-ibero: blue; */
 }
 
 body {
@@ -179,7 +178,7 @@ body {
     display: block;
     margin: auto;
     color: var(--color-ibero);
-    font-weight: bold;
+    font-weight: bold; 
 
 }
 
@@ -210,32 +209,45 @@ body {
   opacity: 1; 
   transition: opacity 1s ease-in-out; 
   text-align: center;
+  overflow: hidden;
 }
 
 .fade {
   opacity: 0;
 }
 
-#splashImagen{
-  border-radius: 5%;
-  max-width: 40%;
-  max-height: 40%;
-}
-.splash-content {
+.splash-contenido {
   text-align: center;
 }
 
 .splashTexto {
   font-size: 50px;
   margin-bottom: 40px;
-  margin-top: -50px;
+  opacity: 0;
+  animation: aparecerDesdeMenosAMas 1s ease-in-out forwards;
 }
 
 .subtituloSplash {
   font-size: 18px; 
   margin-top: 40px;
+  opacity: 0;
+  animation: aparecerDesdeMenosAMas 1s ease-in-out forwards;
 }
 
+#splashImagen {
+  border-radius: 5%;
+  max-width: 40%;
+  max-height: 40%;
+  opacity: 0; 
+  white-space: nowrap;
+  animation: aparecerDesdeMenosAMas 1s ease-in-out 1s forwards;
+}
+
+@keyframes aparecerDesdeMenosAMas {
+  to {
+    opacity: 1;
+  }
+}
 
 /* CAMBIAR EL COLOR DEL SPLASH Y BODY SEGUN EL TEMA DEL DISPOSITIVO  */
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mi-cache-v1.0.0';
+const CACHE_NAME = 'mi-cache-v1.0.1';
 
 // Archivos a cachear
 const urlsToCache = [
@@ -43,6 +43,10 @@ self.addEventListener('fetch', event => {
           return response;
         }
         return fetch(event.request);
+
+      }).catch(function(error) {
+        console.error('Error en el Service Worker:', error);
+        return new Response('Ocurrió un error en el Service Worker', { status: 500, statusText: 'Error interno del servidor' });
       })
   );
 });
