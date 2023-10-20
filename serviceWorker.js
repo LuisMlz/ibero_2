@@ -35,37 +35,37 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    // Intentar obtener la respuesta desde la red primero
-    fetch(event.request)
-      .then(function(response) {
-        // Si la respuesta de la red es exitosa, clonarla para almacenarla en caché y devolverla
-        if (response.status === 200) {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then(function(cache) {
-            cache.put(event.request, responseToCache);
-          });
-          return response;
-        }
-      })
-      .catch(function() {
-        // Si falla la solicitud a la red, intentar recuperar la respuesta desde la caché
-        return caches.match(event.request)
-          .then(function(cachedResponse) {
-            if (cachedResponse) {
-              return cachedResponse;
-            }
-          });
-      })
-  );
-});
-
-
-// self.addEventListener("fetch", fetchEvent => {
-//   fetchEvent.respondWith(
-//     caches.match(fetchEvent.request).then(res => {
-//       return res || fetch(fetchEvent.request);
-//     })
+// self.addEventListener('fetch', function(event) {
+//   event.respondWith(
+//     // Intentar obtener la respuesta desde la red primero
+//     fetch(event.request)
+//       .then(function(response) {
+//         // Si la respuesta de la red es exitosa, clonarla para almacenarla en caché y devolverla
+//         if (response.status === 200) {
+//           const responseToCache = response.clone();
+//           caches.open(CACHE_NAME).then(function(cache) {
+//             cache.put(event.request, responseToCache);
+//           });
+//           return response;
+//         }
+//       })
+//       .catch(function() {
+//         // Si falla la solicitud a la red, intentar recuperar la respuesta desde la caché
+//         return caches.match(event.request)
+//           .then(function(cachedResponse) {
+//             if (cachedResponse) {
+//               return cachedResponse;
+//             }
+//           });
+//       })
 //   );
 // });
+
+
+self.addEventListener("fetch", fetchEvent => {
+  fetchEvent.respondWith(
+    caches.match(fetchEvent.request).then(res => {
+      return res || fetch(fetchEvent.request);
+    })
+  );
+});
