@@ -52,17 +52,23 @@
       <button id="dismiss-button">No, gracias</button>
     </div>
     <script>
-        const CACHE_VERSION = 1.1
-        const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
+      if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/serviceWorker.js')
+            .then(registration => {
+              console.log('Service Worker registrado con éxito:', registration);
 
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('./serviceWorker.js',{cacheName:CACHE_NAME})
-          .then(function(registration) {
-            console.log('Service Worker registrado con éxito:', registration.scope);
-          })
-          .catch(function(error) {
-            console.log('Error al registrar el Service Worker:', error);
-          });
+              // Agregar un controlador para el evento 'controllerchange'
+              navigator.serviceWorker.addEventListener('controllerchange', () => {
+                // El nuevo Service Worker se ha activado
+                // Ahora puedes enviar el mensaje para eliminar la caché
+                if (navigator.controller) {
+                  navigator.controller.postMessage({ action: 'borrar_cache' });
+                }
+              });
+            })
+            .catch(error => {
+              console.error('Error al registrar el Service Worker:', error);
+            });
         }
     </script>
 </body>

@@ -1,42 +1,58 @@
-const CACHE_VERSION = 1.1;
-const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
+const CACHE_NAME = 'mi-cache-v1.0.0';
 
-const assets = [
-  "./",
-  "./js/login.js",
-  "./index.html",
-  "./css/loginStyle.css",
+// Archivos a cachear
+const urlsToCache = [
+  '/',
+  './index.html',
+  './css/loginStyle.css',
+  './js/login.js',
 ];
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(assets);
-    })
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        return cache.addAll(urlsToCache);
+      }).then(() => {
+        return self.skipWaiting();
+      })
   );
-  self.skipWaiting();
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(function(cacheNames) {
+    caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map(function(name) {
-          if (name !== CACHE_NAME) {
-            return caches.delete(name);
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
           }
         })
       );
-    }).then(function() {
-      return self.clients.claim();
     })
   );
 });
 
-self.addEventListener("fetch", fetchEvent => {
-  fetchEvent.respondWith(
-    caches.match(fetchEvent.request).then(res => {
-      return res || fetch(fetchEvent.request);
-    })
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      })
   );
+});
+
+// Agregar un evento para eliminar el caché
+self.addEventListener('message', event => {
+  if (event.data.action === 'borrar_cache') {
+    event.waitUntil(
+      caches.delete(CACHE_NAME)
+        .then(() => {
+          event.source.postMessage('Caché eliminado');
+        })
+    );
+  }
 });

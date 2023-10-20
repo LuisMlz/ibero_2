@@ -13,8 +13,9 @@
                     cambien el cache anterior almacenado.
 */
 
+
 document.addEventListener("DOMContentLoaded", function() {
-    
+
     var soIncluidos = ["iOS"];
 
     //SPLASH DE INICIO
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     }else{
-        alert("CACHE ACTUALIZADA NUEVA 1.1")
+        alert("CACHE ACTUALIZADA NUEVA 1.0.0")
     }
 
     //VARIABLES GLOBALES
