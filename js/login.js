@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     }else{
-        // alert("SALE MENSAJE DE PRUEBA")
+        alert("SALE MENSAJE DE PRUEBA")
     }
 
     //VARIABLES GLOBALES
