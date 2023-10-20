@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mi-cache-v1.0.0';
+const CACHE_NAME = 'mi-cache-v1.0.1';
 
 // Archivos a cachear
 const urlsToCache = [
