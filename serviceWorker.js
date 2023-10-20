@@ -34,27 +34,16 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    // Intenta buscar el recurso en la red
     fetch(event.request)
-      .then((response) => {
-        // Si se encuentra en la red, almacénalo en caché para futuros usos
-        const responseClone = response.clone();
-        caches.open(CACHE_NAME)
-          .then((cache) => {
-            cache.put(event.request, responseClone);
-          });
-        return response;
-      })
       .catch(() => {
         // Si no se encuentra en la red, busca en la caché
         return caches.match(event.request)
           .then((response) => {
             // Si se encuentra en la caché, devuélvelo desde allí
             if (response) {
+              console.log("devuelve el cache")
               return response;
             }
-            // // Si no se encuentra en la caché, devuelve una página de error o recurso en caché
-            // return caches.match('/offline.html');
           });
       })
   );
