@@ -2,7 +2,7 @@ const CACHE_NAME = 'mi-cache-v1.0.0';
 
 // Archivos a cachear
 const urlsToCache = [
-  '/',
+  './',
   './index.html',
   './css/loginStyle.css',
   './js/login.js',
