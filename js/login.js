@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     }else{
-        alert("CACHE ACTUALIZADA")
+        // alert("CACHE ACTUALIZADA")
     }
 
     //VARIABLES GLOBALES
