@@ -1,4 +1,4 @@
-const CACHE_VERSION = 1.3;
+const CACHE_VERSION = 1.4;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
@@ -35,10 +35,10 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-self.addEventListener("fetch", fetchEvent => {
-  fetchEvent.respondWith(
-    caches.match(fetchEvent.request).then(res => {
-      return res || fetch(fetchEvent.request);
-    })
-  );
-});
+// self.addEventListener("fetch", fetchEvent => {
+//   fetchEvent.respondWith(
+//     caches.match(fetchEvent.request).then(res => {
+//       return res || fetch(fetchEvent.request);
+//     })
+//   );
+// });
