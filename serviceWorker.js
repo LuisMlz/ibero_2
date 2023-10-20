@@ -1,4 +1,4 @@
-const CACHE_VERSION = 1.0
+const CACHE_VERSION = 1.0;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
@@ -32,24 +32,29 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-// Manejo del evento 'fetch'
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request)
+    // Intenta buscar el recurso en la red
+    fetch(event.request)
       .then((response) => {
-        // Si el recurso se encuentra en caché, lo servimos desde la caché
-        if (response) {
-          return response;
-        }
-        // Si el recurso no se encuentra en caché, lo buscamos en la red y lo almacenamos en caché
-        return fetch(event.request)
+        // Si se encuentra en la red, almacénalo en caché para futuros usos
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME)
+          .then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+        return response;
+      })
+      .catch(() => {
+        // Si no se encuentra en la red, busca en la caché
+        return caches.match(event.request)
           .then((response) => {
-            const responseClone = response.clone();
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseClone);
-              });
-            return response;
+            // Si se encuentra en la caché, devuélvelo desde allí
+            if (response) {
+              return response;
+            }
+            // // Si no se encuentra en la caché, devuelve una página de error o recurso en caché
+            // return caches.match('/offline.html');
           });
       })
   );
