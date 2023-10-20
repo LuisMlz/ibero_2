@@ -4,8 +4,8 @@
   --color-gris: #333;
   --color-blanco: #fff;
   --color-negro: #000;
-  --color-ibero: #c8041a;
-  /* --color-ibero: blue; */
+  /* --color-ibero: #c8041a; */
+  --color-ibero: blue;
 }
 
 body {
