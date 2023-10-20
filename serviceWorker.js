@@ -1,4 +1,4 @@
-const CACHE_VERSION = 1.0;
+const CACHE_VERSION = 1.1;
 const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
 
 const assets = [
@@ -38,6 +38,7 @@ self.addEventListener("fetch", fetchEvent => {
 
    // Excluimos explícitamente las URL de los scripts que no deseamos almacenar en caché
    if (
+     requestURL.request.url.startsWith("chrome-extension:") ||
      requestURL.href === self.registration.scope || // Verifica si la solicitud es para el propio archivo del Service Worker
      requestURL.href.startsWith("https://cdn.jsdelivr.net/npm/sweetalert2@") ||
      requestURL.href.startsWith("https://cdnjs.cloudflare.com/ajax/libs/dompurify/")
