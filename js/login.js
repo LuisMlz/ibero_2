@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     }else{
-        alert("CACHE ACTUALIZADA NUEVA 1.0.0")
+        alert("CACHE ACTUALIZADA NUEVA 1.0.1")
     }
 
     //VARIABLES GLOBALES
