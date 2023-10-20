@@ -409,3 +409,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
+
+
+const CACHE_VERSION = 1.0
+const CACHE_NAME = `vcard-cache-v${CACHE_VERSION}`;
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./serviceWorker.js',{scope:'./'+CACHE_NAME})
+  .then(function(registration) {
+    console.log('Service Worker registrado con éxito:', registration.scope);
+  })
+  .catch(function(error) {
+    console.log('Error al registrar el Service Worker:', error);
+  });
+}
